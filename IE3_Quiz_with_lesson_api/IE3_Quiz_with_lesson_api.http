@@ -1,6 +1,51 @@
 @IE3_Quiz_with_lesson_api_HostAddress = http://localhost:5001
 
-GET {{IE3_Quiz_with_lesson_api_HostAddress}}/weatherforecast/
+### GET all books (200 OK)
+GET {{IE3_Quiz_with_lesson_api_HostAddress}}/api/books
 Accept: application/json
+
+### GET book by ID (200 OK)
+GET {{IE3_Quiz_with_lesson_api_HostAddress}}/api/books/1
+Accept: application/json
+
+### GET book by non-existing ID (404 Not Found)
+GET {{IE3_Quiz_with_lesson_api_HostAddress}}/api/books/999
+Accept: application/json
+
+### POST create book (201 Created)
+POST {{IE3_Quiz_with_lesson_api_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "title": "Refactoring",
+  "author": "Martin Fowler",
+  "isAvailable": true,
+  "yearPublished": 1999
+}
+
+### POST invalid book (400 Bad Request)
+POST {{IE3_Quiz_with_lesson_api_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "title": "",
+  "author": "",
+  "isAvailable": true,
+  "yearPublished": 1700
+}
+
+### PUT update book (204 No Content)
+PUT {{IE3_Quiz_with_lesson_api_HostAddress}}/api/books/1
+Content-Type: application/json
+
+{
+  "title": "Clean Architecture: A Craftsman's Guide",
+  "author": "Robert C. Martin",
+  "isAvailable": false,
+  "yearPublished": 2017
+}
+
+### DELETE book (204 No Content)
+DELETE {{IE3_Quiz_with_lesson_api_HostAddress}}/api/books/2
 
 ###
